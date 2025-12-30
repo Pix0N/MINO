@@ -31,6 +31,16 @@ MİNO, veteriner klinikleri için geliştirilmiş basit bir otomasyon sistemidir
 \- Microsoft Access (.accdb)
 
 
+## Ekran Görüntüleri
+
+![Ana Ekran](screenshots/main_screen.png)
+![Giriş](screenshots/login_screen.png)
+![Kayıt](screenshots/register_screen.png)
+![Müşteri Kayıt](screenshots/customer_registration_screen.png)
+![Müşteri Listesi](screenshots/customer_registration_list_screen.png)
+![İlaç Kayıt](screenshots/drug_registration_form_screen.png)
+![İlaç Listesi](screenshots/drug_list_screen.png)
+
 
 \## Çalıştırma
 
