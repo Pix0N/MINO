@@ -11,7 +11,7 @@ class LoginForm:
         self.master = master
         self.master.title("Giriş")
         self.master.geometry("500x400+500+250")
-        self.master.iconbitmap('mino.ico')
+        self.master.iconbitmap('assets/mino.ico')
         self.master.resizable(False, False)
         
         self.username_label = ttk.Label(self.master, text="Kullanıcı Adı:")
@@ -67,7 +67,7 @@ class LoginForm:
         password = self.password_entry.get()
         
         # Veritabanı kontrolü
-        conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Pixon\OneDrive\Masaüstü\mino\Kullanicikayitlari.accdb;")
+        conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/Kullanicikayitlari.accdb;")
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM Kayitlar WHERE KullaniciAdi=? AND Sifre=?", (username, password))
         row = cursor.fetchone()
@@ -94,7 +94,7 @@ class LoginForm:
         register_window = tk.Toplevel(self.master)
         register_window.title("Kayıt Ol")
         register_window.geometry("500x400+500+250")
-        register_window.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+        register_window.iconbitmap("assets/mino.ico")
         
         username_label = ttk.Label(register_window, text="Kullanıcı Adı:")
         username_label.pack()
@@ -162,7 +162,8 @@ class LoginForm:
                 return False
         
             # Kaydetme işlemi
-            conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Pixon\OneDrive\Masaüstü\mino\Kullanicikayitlari.accdb;")
+            conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/Kullanicikayitlari.accdb;")
+
             cursor = conn.cursor()
             cursor.execute("INSERT INTO Kayitlar (KullaniciAdi, Email, Sifre) VALUES (?, ?, ?)", (username, email, password))
             conn.commit()
@@ -216,7 +217,8 @@ class LoginForm:
         
                 try:
                     # Veritabanına bağlan
-                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Pixon\OneDrive\Masaüstü\mino\ilacverileri.accdb;")
+                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/ilacverileri.accdb;")
+
                     cursor = conn.cursor()
     
                     # Veritabanına kaydetme işlemi
@@ -237,7 +239,7 @@ class LoginForm:
             # İlaç kayıt formunu oluşturma
             ilac_kayit_form = tk.Toplevel(root)
             ilac_kayit_form.geometry("300x250+1000+250")
-            ilac_kayit_form.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+            ilac_kayit_form.iconbitmap("assets/mino.ico")
             ilac_kayit_form.title("İlaç Kayıt Formu")
     
             # İlaç adı etiketi ve metin kutusu
@@ -284,11 +286,12 @@ class LoginForm:
             # Yeni pencere oluştur
             liste_pencere = tk.Toplevel()
             liste_pencere.geometry("800x400+700+250")
-            liste_pencere.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+            liste_pencere.iconbitmap("assets/mino.ico")
             liste_pencere.title("İlaç Listesi")
             
             # Veritabanına bağlan
-            conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Pixon\OneDrive\Masaüstü\mino\ilacverileri.accdb;")
+            conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/ilacverileri.accdb;")
+
             cursor = conn.cursor()
             
             # İlaç listesini sorgula
@@ -408,7 +411,7 @@ class LoginForm:
     
         root = tk.Tk()
         root.geometry("500x300+450+250")
-        root.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+        root.iconbitmap('assets/mino.ico')
         root.title("Mino")
     
     
@@ -450,7 +453,7 @@ class LoginForm:
                 notlar = notes_entry.get("1.0", "end")
         
                 # Bağlantı dizesi
-                conn_str = r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Furkan\Desktop\mino\musteriverileri.accdb'
+                conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/musteriverileri.accdb;")
         
                 # Veritabanına bağlan
                 conn = pyodbc.connect(conn_str)
@@ -507,7 +510,7 @@ class LoginForm:
             # Ana pencereyi oluştur
             window = tk.Tk()
             window.geometry("600x700+800+50")
-            window.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+            window.iconbitmap('assets/mino.ico')
             window.title("Müşteri Kayıt")
         
             # Vet seçimi oluştur
@@ -621,7 +624,7 @@ class LoginForm:
                 def __init__(self):
                     self.pencere = tk.Toplevel()
                     self.pencere.geometry("500x480+1000+250")
-                    self.pencere.iconbitmap('C:\\Users\\Pixon\\OneDrive\\Masaüstü\\mino\\mino.ico')
+                    self.pencere.iconbitmap('assets/mino.ico')
                     self.pencere.title("Müşteri Kayıt Listesi")
         
                     self.musteri_listesi_yazi_alani = tk.Text(self.pencere, width=40, height=20)
@@ -648,7 +651,7 @@ class LoginForm:
                     self.musteri_kayitlarini_listele()
     
                 def musteri_kayitlarini_listele(self):
-                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Furkan\Desktop\mino\musteriverileri.accdb")
+                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/musteriverileri.accdb")
                     cursor = conn.cursor()
     
                     # Müşteri kayıtlarını listeleme
@@ -668,7 +671,7 @@ class LoginForm:
     
                 def musteri_ara(self):
                     aranan_musteri = self.arama_girdisi.get()
-                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Furkan\Desktop\mino\musteriverileri.accdb")
+                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/musteriverileri.accdb")
                     cursor = conn.cursor()
     
                     # Müşteri arama
@@ -688,7 +691,7 @@ class LoginForm:
     
                 def musteri_sil(self):
                     silinecek_musteri = self.silme_girdisi.get()
-                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Furkan\Desktop\mino\musteriverileri.accdb")
+                    conn = pyodbc.connect(r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};"r"DBQ=database/musteriverileri.accdb")
                     cursor = conn.cursor()
     
                     # Müşteri silme
